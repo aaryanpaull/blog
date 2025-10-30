@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aaryan Paul - Computer Science Engineering student at VIT Chennai. Passionate about Machine Learning, Data Science, and Web Development.">
+    <meta name="keywords" content="Aaryan Paul, Computer Science, Machine Learning, Web Development, VIT Chennai">
+    <meta name="author" content="Aaryan Paul">
+    <title>Aaryan Paul | CS Student & Developer</title>
+    <style>
+        /* ========== CSS RESET & VARIABLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0ea5e9;
+            --secondary-color: #0284c7;
+            --bg-light: #ffffff;
+            --bg-dark: #0f172a;
+            --text-light: #1e293b;
+            --text-dark: #f1f5f9;
+            --card-light: #f8fafc;
+            --card-dark: #1e293b;
+            --border-light: #e2e8f0;
+            --border-dark: #334155;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: var(--bg-light);
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        body.dark-mode {
+            background: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* ========== NAVIGATION ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        body.dark-mode nav {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 5%;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-photo {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ========== SECTIONS ========== */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 1rem auto;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .highlight-item {
+            padding: 1.5rem;
+            background: var(--card-light);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .highlight-item {
+            background: var(--card-dark);
+        }
+
+        .highlight-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.2);
+        }
+
+        .highlight-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ========== SKILLS SECTION ========== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            padding: 2rem;
+            background: var(--card-light);
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid var(--border-light);
+        }
+
+        body.dark-mode .skill-card {
+            background: var(--card-dark);
+            border-color: var(--border-dark);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* ========== BLOG SECTION ========== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--card-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 2px solid var(--border-light);
+            cursor: pointer;
+        }
+
+        body.dark-mode .blog-card {
+            background: var(--card-dark);
+            border-color: var(--border-dark);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-meta {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* ========== PROJECTS SECTION ========== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-light);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 2px solid var(--border-light);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .project-card {
+            background: var(--card-dark);
+            border-color: var(--border-dark);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+            border-color: var(--primary-color);
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-placeholder {
+            height: 150px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(2, 132, 199, 0.1));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 3rem;
+            color: var(--primary-color);
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--card-light);
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 2px solid var(--border-light);
+        }
+
+        body.dark-mode footer {
+            background: var(--card-dark);
+            border-color: var(--border-dark);
+        }
+
+        /* ========== BLOG PAGE STYLES ========== */
+        .blog-page {
+            display: none;
+            padding: 100px 5% 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-page.active {
+            display: block;
+        }
+
+        .blog-header {
+            margin-bottom: 3rem;
+        }
+
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            gap: 1rem;
+        }
+
+        .blog-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .blog-body h1 {
+            font-size: 2rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary-color);
+        }
+
+        .blog-body h2 {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .blog-body p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-body ul, .blog-body ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        .blog-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-body code {
+            background: var(--card-light);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        body.dark-mode .blog-body code {
+            background: var(--card-dark);
+        }
+
+        .blog-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .blog-body th, .blog-body td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid var(--border-light);
+        }
+
+        body.dark-mode .blog-body th,
+        body.dark-mode .blog-body td {
+            border-color: var(--border-dark);
+        }
+
+        .blog-body th {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .blog-body hr {
+            border: none;
+            height: 2px;
+            background: var(--border-light);
+            margin: 2rem 0;
+        }
+
+        body.dark-mode .blog-body hr {
+            background: var(--border-dark);
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 60px);
+                background: var(--bg-light);
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            body.dark-mode .nav-links {
+                background: var(--bg-dark);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-content,
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .profile-photo {
+                width: 250px;
+                height: 250px;
+                font-size: 6rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .blog-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== SMOOTH SCROLL ========== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ========== FADE IN ANIMATION ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">AP</div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" onclick="closeMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+            <li><a href="#blog" onclick="closeMenu()">Blog</a></li>
+            <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            <li><button class="theme-toggle" onclick="toggleTheme()">🌓</button></li>
+        </ul>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-text fade-in">
+                    <h1>Hi, I'm Aaryan Paul</h1>
+                    <h2>Computer Science Student & Developer</h2>
+                    <p>First-year CS Engineering student at VIT Chennai, passionate about Machine Learning, Data Science, and building innovative solutions. Active in hackathons and always eager to learn.</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image fade-in">
+                    <div class="profile-photo">AP</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>I'm a first-year Computer Science Engineering student at VIT Chennai with a deep passion for technology and innovation. My journey in tech is driven by curiosity and a desire to solve real-world problems through code.</p>
+                    <p>Beyond academics, I actively participate in hackathons, coding competitions, and technical workshops, constantly pushing myself to learn and grow. My current focus is on exploring Machine Learning and Data Science to discover my research niche.</p>
+                </div>
+                <div class="highlights fade-in">
+                    <div class="highlight-item">
+                        <h3>🎓 Education</h3>
+                        <p>B.Tech in Computer Science Engineering<br>VIT Chennai</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h3>🏆 Hackathons</h3>
+                        <p>Active participant in coding events and technical competitions</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h3>🔬 Research Interest</h3>
+                        <p>Machine Learning & Data Science</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title fade-in">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">C++</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <div class="skill-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🤖</div>
+                    <h3>Interests</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Data Science</span>
+                        <span class="tag">Research</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <h2 class="section-title fade-in">Latest Blog Posts</h2>
+            <div class="blog-grid">
+                <div class="blog-card fade-in" onclick="openBlog('ml-beginner')">
+                    <div class="blog-image">🤖</div>
+                    <div class="blog-content">
+                        <h3>Guide to Machine Learning as a Beginner</h3>
+                        <p class="blog-meta">📅 October 2025 • 5 min read</p>
+                        <p>A comprehensive guide to getting started with Machine Learning, covering fundamentals, tools, and a 90-day roadmap for beginners.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card fade-in" onclick="openBlog('cpp-relevance')">
+                    <div class="blog-image">⚡</div>
+                    <div class="blog-content">
+                        <h3>Why C++ is Still Relevant in Today's World</h3>
+                        <p class="blog-meta">📅 October 2025 • 4 min read</p>
+                        <p>Exploring why C++, despite being nearly half a century old, remains a cornerstone in modern computer science and software development.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title fade-in">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-placeholder">🏙️</div>
+                    <h3>CivicLens — AI-Powered Civic Issue Reporting</h3>
+                    <p><strong>Short overview:</strong> CivicLens is an AI-driven civic complaint reporting and routing system that empowers citizens to report civic issues (potholes, garbage, sewage, streetlights, waterlogging) using photo + description + location. The system validates reports with AI, assigns severity (1–10), tags keywords, and routes issues to the appropriate government departments with step-by-step action suggestions.</p>
+
+                    <h4>Deployed Prototype</h4>
+                    <p><a href="https://civiclens-five.vercel.app/" target="_blank" rel="noopener">https://civiclens-five.vercel.app/</a></p>
+
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Photo upload (Sharp compression)</li>
+                        <li>Automatic location tagging (GPS)</li>
+                        <li>AI verification (spam filtering) via Gemini 2.5 Flash</li>
+                        <li>Severity rating (1–10) and priority assignment</li>
+                        <li>Multi-department routing (Chennai mapping included)</li>
+                        <li>Step-by-step actionable suggestions for authorities</li>
+                        <li>Interactive complaint map & personal dashboard</li>
+                        <li>Leaderboards, certificates, and gamification</li>
+                        <li>Multi-language support (EN, HI, TA, TE, KN, GU, BN)</li>
+                    </ul>
+
+                    <h4>Tech Stack</h4>
+                    <p>Backend: Node.js + Express<br>
+                    AI: Google Gemini 2.5 Flash<br>
+                    Image Processing: Sharp (WebP compression)<br>
+                    Frontend: Static HTML/CSS/JS<br>
+                    Storage: Optional Firebase / MongoDB</p>
+
+                    
+
+                    <h4>Getting Started</h4>
+                    <ol>
+                        <li>Clone the repo</li>
+                        <li>npm install</li>
+                        <li>Create a <code>.env</code> with GEMINI_API_KEY and PORT</li>
+                        <li>npm start</li>
+                    </ol>
+
+                    <p style="margin-top:0.5rem;"><a class="btn btn-primary" href="https://civiclens-five.vercel.app/" target="_blank" rel="noopener">View Prototype</a>
+                    <a class="btn btn-secondary" href="#contact">Contact</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="contact-content fade-in">
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to collaborate. Feel free to reach out!</p>
+                <div class="social-links">
+                    <a href="mailto:aaryan.paul2025@vitstudent.ac.in" class="social-link" title="Email">📧</a>
+                    <a href="https://github.com/aaryanpaull" target="_blank" class="social-link" title="GitHub">🔗</a>
+                    <a href="https://linkedin.com/in/aaryanpaull" target="_blank" class="social-link" title="LinkedIn">💼</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Aaryan Paul. Built with passion and code.</p>
+        </footer>
+    </div>
+
+    <!-- Blog Page: ML Beginner Guide -->
+    <div id="blog-ml-beginner" class="blog-page">
+        <a href="#blog" class="back-button" onclick="closeBlog()">← Back to Blog</a>
+        <article>
+            <div class="blog-header">
+                <h1>Guide to Machine Learning as a Beginner</h1>
+                <p class="blog-meta">📅 October 2025 • 5 min read</p>
+            </div>
+            <div class="blog-body">
+                <p>Machine Learning (ML) is everywhere — from Netflix recommendations, spam filters, Google Maps predictions, to self-driving cars. AI isn't just a buzzword anymore, its implications, that is Machine Learning is shaping every crucial process, and we aren't even aware of it fully.</p>
+
+                <p>This blog will be essential for you to know how to start learning Machine Learning, even if you have zero prior experience.</p>
+
+                <h1>What Is Machine Learning?</h1>
+
+                <p>Machine learning is the subset of artificial intelligence (AI) focused on algorithms that can "learn" the patterns of training data and, subsequently, make accurate inferences about new data. This pattern recognition ability enables machine learning models to make decisions or predictions without explicit, hard-coded instructions.</p>
+
+                <p>Instead of writing rules manually, we provide data and algorithms learn patterns.</p>
+
+                <p>Examples include:</p>
+
+                <ul>
+                    <li>Gmail spam filter - Detects unwanted emails</li>
+                    <li>YouTube recommendations - Suggests videos you may like</li>
+                    <li>Medical diagnosis systems - Predict diseases from scans</li>
+                    <li>Self-driving cars - Detects objects, predicts movement</li>
+                </ul>
+
+                <hr>
+
+                <p><strong>Understanding the Core workflow of ML:</strong></p>
+
+                <p>Every ML project follows a similar flow:</p>
+
+                <ol>
+                    <li>Define the problem</li>
+                    <li>Collect data (emails)</li>
+                    <li>Clean and prepare data</li>
+                    <li>Choose a model (eg: logistic regression, neural networks)</li>
+                    <li>Train the model (feed data to learn patterns)</li>
+                    <li>Test & evaluate performance</li>
+                    <li>Deploy</li>
+                </ol>
+
+                <hr>
+
+                <h2>Skills You Need to Start ML</h2>
+
+                <p><strong>Programming:</strong></p>
+
+                <p>Preferred language: Python</p>
+
+                <ul>
+                    <li>Simple syntax</li>
+                    <li>Huge ML ecosystem</li>
+                </ul>
+
+                <p>Learn:</p>
+
+                <ul>
+                    <li>Variables, loops, functions</li>
+                    <li>Data structures</li>
+                    <li>File handling</li>
+                </ul>
+
+                <p>Tools: Jupyter Notebook / Google Colab</p>
+
+                <p><strong>Math Fundamentals-</strong></p>
+
+                <ul>
+                    <li>Linear algebra - Working with vectors & matrices</li>
+                    <li>Statistics & Probability - Understanding data & predictions</li>
+                    <li>Calculus (basics) - Understanding how models learn</li>
+                </ul>
+
+                <p><strong>Data Handling-</strong></p>
+
+                <p>Learn to work with data using:</p>
+
+                <ul>
+                    <li>Pandas - Data manipulation</li>
+                    <li>NumPy - Numerical computations</li>
+                    <li>Matplotlib / Seaborn - Data visualization</li>
+                </ul>
+
+                <p><strong>Beginner Friendly ML Libraries to Learn</strong></p>
+
+                <ul>
+                    <li>scikit-learn     |</li>
+                    <li>TensorFlow / PyTorch - For deep learning (later stage)</li>
+                </ul>
+
+                <p><strong>Hands-On Project Ideas</strong></p>
+
+                <ul>
+                    <li>Predict house prices - Regression</li>
+                    <li>Classify flowers (Iris dataset) - Classification</li>
+                    <li>Spam email detection- Natural Language Processing</li>
+                    <li>Handwritten digit recognition (MNIST) - Neural networks</li>
+                </ul>
+
+                <p>Tip: Start with scikit-learn, then move towards deep learning, which is further advanced.</p>
+
+                <p><strong>90-Day Roadmap-</strong></p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Weeks</th>
+                            <th>Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1–2</td>
+                            <td>Python basics + Numpy, Pandas</td>
+                        </tr>
+                        <tr>
+                            <td>3–5</td>
+                            <td>Statistics + Exploratory Data Analysis</td>
+                        </tr>
+                        <tr>
+                            <td>6–8</td>
+                            <td>ML algorithms using scikit-learn</td>
+                        </tr>
+                        <tr>
+                            <td>9–12</td>
+                            <td>Mini projects + Kaggle challenges</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Resources-</strong></p>
+
+                <p>Courses:</p>
+
+                <ul>
+                    <li>Google — Machine Learning Crash Course</li>
+                    <li>Coursera — Andrew Ng ML Course</li>
+                    <li>Kaggle — Free practical ML courses</li>
+                    <li>Youtube - YT Channel named "Bro Code"</li>
+                </ul>
+
+                <p>Practice Platforms-</p>
+
+                <ul>
+                    <li>Kaggle (learn already made models and study them elaborately)</li>
+                    <li>Hackerrank (Machine Learning Section)</li>
+                </ul>
+
+                <h2>Conclusion</h2>
+
+                <p>Machine Learning is one of the most exciting and impactful fields today. With the right roadmap, mindset, and consistent practice, anyone can learn it — including you.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- Blog Page: C++ Relevance -->
+    <div id="blog-cpp-relevance" class="blog-page">
+        <a href="#blog" class="back-button" onclick="closeBlog()">← Back to Blog</a>
+        <article>
+            <div class="blog-header">
+                <h1>Why C++ is still relevant in today's world</h1>
+                <p class="blog-meta">📅 October 2025 • 4 min read</p>
+            </div>
+            <div class="blog-body">
+                <p>When looking at the computer programming landscape, it's hard not to notice that C++ is nearly half a century old, and yet it's not fading away, but rather continuing to be a cornerstone in the world of computer science.</p>
+
+                <p>Well-known in the world of research, high-performance applications, and certain industries, the popularity of C++ is based not on tradition but on its ability to effectively address computing problems that newer languages can't, and still hold a balance between the power and speed of low-level systems and the structure of higher-level languages.</p>
+
+                <p>Built with the specific task in mind to deliver efficient computing resources with high-level construction features, the recent standards improvements to C++ have supplied memory shielding, lambda features, and better concurrent processing, plus a far more expansive standard library which make it more adaptable and secure than its previous versions.</p>
+
+                <p>At the heart of its reason for being is performance. When applications need to be lightning fast, whether it's for operating systems, embedded systems, simulations, numerical computations or games, C++ stands out from the rest. The likes of Google, Microsoft, Adobe and companies in the gaming and finance industries have made C++ the go-to language for their performance-critical components, showcasing its value.</p>
+
+                <p>C++ is also the top choice for competitive programmers and academics, and websites like Codeforces and the ICPC encourage its use. Coming hotfooting through the world of computer programming, C++ gives students a firm foundation in memory management, data structures and mental algebra, turning them into top-notch problem solvers.</p>
+
+                <p>It's not always the best choice for prototyping or web development, but C++ is the only game in town when high performance, precision and control are a priority.</p>
+            </div>
+        </article>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Theme Toggle Function
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            // Save preference to localStorage
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Load saved theme on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        // Blog Navigation Functions
+        function openBlog(blogId) {
+            // Hide main content
+            document.getElementById('mainContent').style.display = 'none';
+            
+            // Show selected blog
+            const blogPage = document.getElementById('blog-' + blogId);
+            blogPage.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update URL hash without triggering scroll
+            history.pushState(null, null, '#' + blogId);
+        }
+
+        function closeBlog() {
+            // Hide all blog pages
+            const blogPages = document.querySelectorAll('.blog-page');
+            blogPages.forEach(page => page.classList.remove('active'));
+            
+            // Show main content
+            document.getElementById('mainContent').style.display = 'block';
+            
+            // Update URL
+            history.pushState(null, null, '#blog');
+            
+            // Scroll to blog section
+            document.getElementById('blog').scrollIntoView();
+        }
+
+        // Handle browser back button
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash;
+            if (hash === '#ml-beginner' || hash === '#cpp-relevance') {
+                openBlog(hash.substring(1));
+            } else {
+                closeBlog();
+            }
+        });
+
+        // Fade-in Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && !href.includes('ml-beginner') && !href.includes('cpp-relevance')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
